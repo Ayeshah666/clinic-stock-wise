@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
+import { Route as AuthenticatedInventoryRouteImport } from './routes/_authenticated/inventory'
 import { Route as AuthenticatedMedicinesIndexRouteImport } from './routes/_authenticated/medicines.index'
 import { Route as AuthenticatedMedicinesIdRouteImport } from './routes/_authenticated/medicines.$id'
 
@@ -35,6 +36,11 @@ const AuthenticatedDashboardRoute = AuthenticatedDashboardRouteImport.update({
   path: '/dashboard',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedInventoryRoute = AuthenticatedInventoryRouteImport.update({
+  id: '/inventory',
+  path: '/inventory',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const AuthenticatedMedicinesIndexRoute =
   AuthenticatedMedicinesIndexRouteImport.update({
     id: '/medicines/',
@@ -52,6 +58,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
+  '/inventory': typeof AuthenticatedInventoryRoute
   '/medicines/$id': typeof AuthenticatedMedicinesIdRoute
   '/medicines/': typeof AuthenticatedMedicinesIndexRoute
 }
@@ -59,6 +66,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
+  '/inventory': typeof AuthenticatedInventoryRoute
   '/medicines/$id': typeof AuthenticatedMedicinesIdRoute
   '/medicines': typeof AuthenticatedMedicinesIndexRoute
 }
@@ -68,20 +76,34 @@ export interface FileRoutesById {
   '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/auth': typeof AuthRoute
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
+  '/_authenticated/inventory': typeof AuthenticatedInventoryRoute
   '/_authenticated/medicines/$id': typeof AuthenticatedMedicinesIdRoute
   '/_authenticated/medicines/': typeof AuthenticatedMedicinesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/auth' | '/dashboard' | '/medicines/$id' | '/medicines/'
+  fullPaths:
+    | '/'
+    | '/auth'
+    | '/dashboard'
+    | '/inventory'
+    | '/medicines/$id'
+    | '/medicines/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/auth' | '/dashboard' | '/medicines/$id' | '/medicines'
+  to:
+    | '/'
+    | '/auth'
+    | '/dashboard'
+    | '/inventory'
+    | '/medicines/$id'
+    | '/medicines'
   id:
     | '__root__'
     | '/'
     | '/_authenticated'
     | '/auth'
     | '/_authenticated/dashboard'
+    | '/_authenticated/inventory'
     | '/_authenticated/medicines/$id'
     | '/_authenticated/medicines/'
   fileRoutesById: FileRoutesById
@@ -122,6 +144,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedDashboardRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/inventory': {
+      id: '/_authenticated/inventory'
+      path: '/inventory'
+      fullPath: '/inventory'
+      preLoaderRoute: typeof AuthenticatedInventoryRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/medicines/': {
       id: '/_authenticated/medicines/'
       path: '/medicines'
@@ -141,12 +170,14 @@ declare module '@tanstack/react-router' {
 
 interface AuthenticatedRouteRouteChildren {
   AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
+  AuthenticatedInventoryRoute: typeof AuthenticatedInventoryRoute
   AuthenticatedMedicinesIdRoute: typeof AuthenticatedMedicinesIdRoute
   AuthenticatedMedicinesIndexRoute: typeof AuthenticatedMedicinesIndexRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
+  AuthenticatedInventoryRoute: AuthenticatedInventoryRoute,
   AuthenticatedMedicinesIdRoute: AuthenticatedMedicinesIdRoute,
   AuthenticatedMedicinesIndexRoute: AuthenticatedMedicinesIndexRoute,
 }
