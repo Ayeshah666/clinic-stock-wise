@@ -73,7 +73,7 @@ export const Route = createFileRoute("/_authenticated/dispensing")({
       },
     ],
   }),
-  component: DispensingPage;
+  component: DispensingPage,
 });
 
 type LineItem = {
