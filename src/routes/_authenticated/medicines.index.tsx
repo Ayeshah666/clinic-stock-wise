@@ -116,7 +116,7 @@ const emptyForm = (defaultReorder: number): FormState => ({
 });
 
 function MedicinesPage() {
-  const { can, profile } = useAuth();
+  const { can, fullName, user } = useAuth();
   const queryClient = useQueryClient();
   const settings = useQuery({ queryKey: qk.settings, queryFn: getSettings });
   const medicines = useQuery({ queryKey: qk.medicines, queryFn: getMedicines });
@@ -213,9 +213,9 @@ function MedicinesPage() {
           action: "Updated medicine",
           module: "Medicines",
           record_ref: editing.code,
-          description: `${profile?.full_name ?? "A user"} updated medicine ${payload.name}`,
-          user_name: profile?.full_name ?? null,
-          user_id: profile?.id ?? null,
+          description: `${fullName || "A user"} updated medicine ${payload.name}`,
+          user_name: fullName || null,
+          user_id: user?.id ?? null,
         });
       } else {
         const { data, error } = await supabase
@@ -228,9 +228,9 @@ function MedicinesPage() {
           action: "Created medicine",
           module: "Medicines",
           record_ref: data?.code ?? null,
-          description: `${profile?.full_name ?? "A user"} added medicine ${payload.name}`,
-          user_name: profile?.full_name ?? null,
-          user_id: profile?.id ?? null,
+          description: `${fullName || "A user"} added medicine ${payload.name}`,
+          user_name: fullName || null,
+          user_id: user?.id ?? null,
         });
       }
     },
