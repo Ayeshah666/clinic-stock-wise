@@ -176,7 +176,7 @@ function ReportsPage() {
 
       <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
         <StatCard label="Stock Value" value={stockValue.toFixed(2)} />
-        <StatCard label="Units Dispensed" value={dispensedTotal} tone="primary" />
+        <StatCard label="Units Dispensed" value={dispensedTotal} tone="info" />
         <StatCard label="Units Received" value={receivedTotal} tone="success" />
         <StatCard label="Damaged / Expired" value={wastage} tone="danger" />
       </div>
