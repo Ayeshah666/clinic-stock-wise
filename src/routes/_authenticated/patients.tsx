@@ -399,7 +399,7 @@ function PatientsPage() {
             <div>
               <Label htmlFor="pgender">Gender</Label>
               <Select
-                value={patientForm.gender || undefined}
+                {...(patientForm.gender ? { value: patientForm.gender } : {})}
                 onValueChange={(v) => setPatientForm({ ...patientForm, gender: v })}
               >
                 <SelectTrigger id="pgender" className="mt-1">
@@ -469,7 +469,7 @@ function PatientsPage() {
           <div className="grid gap-3 sm:grid-cols-3">
             <div>
               <Label htmlFor="rxpatient">Patient *</Label>
-              <Select value={rxPatient || undefined} onValueChange={setRxPatient}>
+              <Select {...(rxPatient ? { value: rxPatient } : {})} onValueChange={setRxPatient}>
                 <SelectTrigger id="rxpatient" className="mt-1">
                   <SelectValue placeholder="Select patient" />
                 </SelectTrigger>
@@ -513,7 +513,7 @@ function PatientsPage() {
                 <div className="sm:col-span-4">
                   <Label className="text-xs">Medicine</Label>
                   <Select
-                    value={item.medicine_id || undefined}
+                    {...(item.medicine_id ? { value: item.medicine_id } : {})}
                     onValueChange={(v) =>
                       setRxItems(
                         rxItems.map((r, i) => (i === index ? { ...r, medicine_id: v } : r)),
