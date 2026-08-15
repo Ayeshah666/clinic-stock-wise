@@ -16,6 +16,7 @@ import { Route as AuthenticatedDashboardRouteImport } from './routes/_authentica
 import { Route as AuthenticatedDispensingRouteImport } from './routes/_authenticated/dispensing'
 import { Route as AuthenticatedInventoryRouteImport } from './routes/_authenticated/inventory'
 import { Route as AuthenticatedPurchasesRouteImport } from './routes/_authenticated/purchases'
+import { Route as AuthenticatedSuppliersRouteImport } from './routes/_authenticated/suppliers'
 import { Route as AuthenticatedMedicinesIndexRouteImport } from './routes/_authenticated/medicines.index'
 import { Route as AuthenticatedMedicinesIdRouteImport } from './routes/_authenticated/medicines.$id'
 
@@ -53,6 +54,11 @@ const AuthenticatedPurchasesRoute = AuthenticatedPurchasesRouteImport.update({
   path: '/purchases',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedSuppliersRoute = AuthenticatedSuppliersRouteImport.update({
+  id: '/suppliers',
+  path: '/suppliers',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const AuthenticatedMedicinesIndexRoute =
   AuthenticatedMedicinesIndexRouteImport.update({
     id: '/medicines/',
@@ -73,6 +79,7 @@ export interface FileRoutesByFullPath {
   '/dispensing': typeof AuthenticatedDispensingRoute
   '/inventory': typeof AuthenticatedInventoryRoute
   '/purchases': typeof AuthenticatedPurchasesRoute
+  '/suppliers': typeof AuthenticatedSuppliersRoute
   '/medicines/$id': typeof AuthenticatedMedicinesIdRoute
   '/medicines/': typeof AuthenticatedMedicinesIndexRoute
 }
@@ -83,6 +90,7 @@ export interface FileRoutesByTo {
   '/dispensing': typeof AuthenticatedDispensingRoute
   '/inventory': typeof AuthenticatedInventoryRoute
   '/purchases': typeof AuthenticatedPurchasesRoute
+  '/suppliers': typeof AuthenticatedSuppliersRoute
   '/medicines/$id': typeof AuthenticatedMedicinesIdRoute
   '/medicines': typeof AuthenticatedMedicinesIndexRoute
 }
@@ -95,6 +103,7 @@ export interface FileRoutesById {
   '/_authenticated/dispensing': typeof AuthenticatedDispensingRoute
   '/_authenticated/inventory': typeof AuthenticatedInventoryRoute
   '/_authenticated/purchases': typeof AuthenticatedPurchasesRoute
+  '/_authenticated/suppliers': typeof AuthenticatedSuppliersRoute
   '/_authenticated/medicines/$id': typeof AuthenticatedMedicinesIdRoute
   '/_authenticated/medicines/': typeof AuthenticatedMedicinesIndexRoute
 }
@@ -107,6 +116,7 @@ export interface FileRouteTypes {
     | '/dispensing'
     | '/inventory'
     | '/purchases'
+    | '/suppliers'
     | '/medicines/$id'
     | '/medicines/'
   fileRoutesByTo: FileRoutesByTo
@@ -117,6 +127,7 @@ export interface FileRouteTypes {
     | '/dispensing'
     | '/inventory'
     | '/purchases'
+    | '/suppliers'
     | '/medicines/$id'
     | '/medicines'
   id:
@@ -128,6 +139,7 @@ export interface FileRouteTypes {
     | '/_authenticated/dispensing'
     | '/_authenticated/inventory'
     | '/_authenticated/purchases'
+    | '/_authenticated/suppliers'
     | '/_authenticated/medicines/$id'
     | '/_authenticated/medicines/'
   fileRoutesById: FileRoutesById
@@ -189,6 +201,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedPurchasesRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/suppliers': {
+      id: '/_authenticated/suppliers'
+      path: '/suppliers'
+      fullPath: '/suppliers'
+      preLoaderRoute: typeof AuthenticatedSuppliersRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/medicines/': {
       id: '/_authenticated/medicines/'
       path: '/medicines'
@@ -211,6 +230,7 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedDispensingRoute: typeof AuthenticatedDispensingRoute
   AuthenticatedInventoryRoute: typeof AuthenticatedInventoryRoute
   AuthenticatedPurchasesRoute: typeof AuthenticatedPurchasesRoute
+  AuthenticatedSuppliersRoute: typeof AuthenticatedSuppliersRoute
   AuthenticatedMedicinesIdRoute: typeof AuthenticatedMedicinesIdRoute
   AuthenticatedMedicinesIndexRoute: typeof AuthenticatedMedicinesIndexRoute
 }
@@ -220,6 +240,7 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedDispensingRoute: AuthenticatedDispensingRoute,
   AuthenticatedInventoryRoute: AuthenticatedInventoryRoute,
   AuthenticatedPurchasesRoute: AuthenticatedPurchasesRoute,
+  AuthenticatedSuppliersRoute: AuthenticatedSuppliersRoute,
   AuthenticatedMedicinesIdRoute: AuthenticatedMedicinesIdRoute,
   AuthenticatedMedicinesIndexRoute: AuthenticatedMedicinesIndexRoute,
 }
