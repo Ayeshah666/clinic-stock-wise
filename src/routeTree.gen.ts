@@ -17,6 +17,7 @@ import { Route as AuthenticatedDashboardRouteImport } from './routes/_authentica
 import { Route as AuthenticatedDispensingRouteImport } from './routes/_authenticated/dispensing'
 import { Route as AuthenticatedInventoryRouteImport } from './routes/_authenticated/inventory'
 import { Route as AuthenticatedPurchasesRouteImport } from './routes/_authenticated/purchases'
+import { Route as AuthenticatedReportsRouteImport } from './routes/_authenticated/reports'
 import { Route as AuthenticatedSuppliersRouteImport } from './routes/_authenticated/suppliers'
 import { Route as AuthenticatedMedicinesIndexRouteImport } from './routes/_authenticated/medicines.index'
 import { Route as AuthenticatedMedicinesIdRouteImport } from './routes/_authenticated/medicines.$id'
@@ -60,6 +61,11 @@ const AuthenticatedPurchasesRoute = AuthenticatedPurchasesRouteImport.update({
   path: '/purchases',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedReportsRoute = AuthenticatedReportsRouteImport.update({
+  id: '/reports',
+  path: '/reports',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const AuthenticatedSuppliersRoute = AuthenticatedSuppliersRouteImport.update({
   id: '/suppliers',
   path: '/suppliers',
@@ -86,6 +92,7 @@ export interface FileRoutesByFullPath {
   '/dispensing': typeof AuthenticatedDispensingRoute
   '/inventory': typeof AuthenticatedInventoryRoute
   '/purchases': typeof AuthenticatedPurchasesRoute
+  '/reports': typeof AuthenticatedReportsRoute
   '/suppliers': typeof AuthenticatedSuppliersRoute
   '/medicines/$id': typeof AuthenticatedMedicinesIdRoute
   '/medicines/': typeof AuthenticatedMedicinesIndexRoute
@@ -98,6 +105,7 @@ export interface FileRoutesByTo {
   '/dispensing': typeof AuthenticatedDispensingRoute
   '/inventory': typeof AuthenticatedInventoryRoute
   '/purchases': typeof AuthenticatedPurchasesRoute
+  '/reports': typeof AuthenticatedReportsRoute
   '/suppliers': typeof AuthenticatedSuppliersRoute
   '/medicines/$id': typeof AuthenticatedMedicinesIdRoute
   '/medicines': typeof AuthenticatedMedicinesIndexRoute
@@ -112,6 +120,7 @@ export interface FileRoutesById {
   '/_authenticated/dispensing': typeof AuthenticatedDispensingRoute
   '/_authenticated/inventory': typeof AuthenticatedInventoryRoute
   '/_authenticated/purchases': typeof AuthenticatedPurchasesRoute
+  '/_authenticated/reports': typeof AuthenticatedReportsRoute
   '/_authenticated/suppliers': typeof AuthenticatedSuppliersRoute
   '/_authenticated/medicines/$id': typeof AuthenticatedMedicinesIdRoute
   '/_authenticated/medicines/': typeof AuthenticatedMedicinesIndexRoute
@@ -126,6 +135,7 @@ export interface FileRouteTypes {
     | '/dispensing'
     | '/inventory'
     | '/purchases'
+    | '/reports'
     | '/suppliers'
     | '/medicines/$id'
     | '/medicines/'
@@ -138,6 +148,7 @@ export interface FileRouteTypes {
     | '/dispensing'
     | '/inventory'
     | '/purchases'
+    | '/reports'
     | '/suppliers'
     | '/medicines/$id'
     | '/medicines'
@@ -151,6 +162,7 @@ export interface FileRouteTypes {
     | '/_authenticated/dispensing'
     | '/_authenticated/inventory'
     | '/_authenticated/purchases'
+    | '/_authenticated/reports'
     | '/_authenticated/suppliers'
     | '/_authenticated/medicines/$id'
     | '/_authenticated/medicines/'
@@ -220,6 +232,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedPurchasesRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/reports': {
+      id: '/_authenticated/reports'
+      path: '/reports'
+      fullPath: '/reports'
+      preLoaderRoute: typeof AuthenticatedReportsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/suppliers': {
       id: '/_authenticated/suppliers'
       path: '/suppliers'
@@ -250,6 +269,7 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedDispensingRoute: typeof AuthenticatedDispensingRoute
   AuthenticatedInventoryRoute: typeof AuthenticatedInventoryRoute
   AuthenticatedPurchasesRoute: typeof AuthenticatedPurchasesRoute
+  AuthenticatedReportsRoute: typeof AuthenticatedReportsRoute
   AuthenticatedSuppliersRoute: typeof AuthenticatedSuppliersRoute
   AuthenticatedMedicinesIdRoute: typeof AuthenticatedMedicinesIdRoute
   AuthenticatedMedicinesIndexRoute: typeof AuthenticatedMedicinesIndexRoute
@@ -261,6 +281,7 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedDispensingRoute: AuthenticatedDispensingRoute,
   AuthenticatedInventoryRoute: AuthenticatedInventoryRoute,
   AuthenticatedPurchasesRoute: AuthenticatedPurchasesRoute,
+  AuthenticatedReportsRoute: AuthenticatedReportsRoute,
   AuthenticatedSuppliersRoute: AuthenticatedSuppliersRoute,
   AuthenticatedMedicinesIdRoute: AuthenticatedMedicinesIdRoute,
   AuthenticatedMedicinesIndexRoute: AuthenticatedMedicinesIndexRoute,
